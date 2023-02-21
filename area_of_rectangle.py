@@ -4,7 +4,6 @@
 
 import sys
 
-
 def area_of_rectangle(height, width = None):
     """
     Returns the area of a rectangle.
@@ -29,8 +28,16 @@ def area_of_rectangle(height, width = None):
     >>> area_of_rectangle (7, 2)
     14
     """
-    if width:
+
+    try:
+        height = float(height) # check if height is a number
+        width = float(width) # chheck if width is a number
+    except ValueError:
+        print("Error: height and width must be numbers")
+        sys.exit(1)
+    if width == None:
         width = height
+    #import pdb; pdb.set_trace()
     area = height * width
     return area
 
@@ -43,8 +50,8 @@ if __name__ == '__main__':
         sys.exit(message)
     height = sys.argv[1]
     width = height
-    if len(sys.argv) > 3:
-        width = sys.argv[1]
+    if len(sys.argv) == 3: # change num system arguments to 3
+        width = sys.argv[2]
 
     area = area_of_rectangle(height, width)
 
